@@ -1,0 +1,23 @@
+{% extends 'diary/base.html' %}
+
+{% block content %}
+<form action = "" method = "POST">  <!-- acitonにURLを入れるとどこURLにデータを送信するかを決められる。空文字はデフォルトとなる。GETはURLにデータを含めて送信、POSTは表に見えないように追加・更新・削除するときに使う　-->
+  <table class="table">
+    <tr>
+      <th>タイトル</th>
+      <td>{{ day.title }}</td>
+    </tr>
+    <tr>
+      <th>本文</th>
+      <td>{{ day.text }}</td>
+    </tr>
+    <tr>
+      <th>日付</th>
+      <td>{{ day.date }}</td>
+    </tr>
+  </table>
+  <p>こちらのデータを削除します。</p>
+  <button type = "submit" class="btn btn-primary">送信</button> <!-- form内のデータを送信する -->
+  {% csrf_token %} <!-- クロスサイドリクエストフォージュリーという攻撃の対策となる。POSTのときには必ず必要となる -->
+</form>
+{% endblock %}
